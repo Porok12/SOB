@@ -24,8 +24,9 @@ T stringToValue(string str) {
 
 int ignoreWhiteMarks(istream& in) {
     int howMany = 0;
-    while (in.peek() == 10 || in.peek() == 32)
+    while (in.peek() == 10 || in.peek() == 32) {
         in.ignore();
+    }
     return howMany;
 }
 

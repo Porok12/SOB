@@ -7,6 +7,7 @@
 using namespace std;
 
 int main(int argc, char** argv) {
+    
     if (argc == 4) {
         string file_name(argv[1]);
         auto min = stringToValue<int>(string(argv[2]));

@@ -145,5 +145,4 @@ void List::showLeftToRight() {
 }
 
 void List::swap(el *&tmp, el *&k) {
-
 }

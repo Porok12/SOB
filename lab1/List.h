@@ -17,6 +17,7 @@ struct el {
 };
 
 class List {
+private:
     el *head;
     el *tail;
     el *addHead(int a);
