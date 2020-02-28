@@ -22,18 +22,16 @@ private:
     el *tail;
     el *addHead(int a);
     el *addTail(int a);
-    el *removeHead();
-    el *removeTail();
+    void removeHead();
+    void removeTail();
 
 public:
     List();
     virtual~List();
     el *add(int a);
-    el *removeValue(int a);
     void removeList();
     void showRightToLeft();
     void showLeftToRight();
-    void swap(el *&tmp, el *&k);
 };
 
 #endif //LAB1_LIST_H

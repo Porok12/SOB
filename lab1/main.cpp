@@ -1,3 +1,5 @@
+//#define NDEBUG
+
 #include <iostream>
 #include <fstream>
 #include <cassert>
@@ -31,12 +33,12 @@ int main(int argc, char** argv) {
             what = input.peek();
             if (isdigit(what)) {
                 input >> value;
-                cout << "Liczba: " << value <<endl;
                 assert(value >= min && value <= max);
-                assert(list->add(value) != nullptr);
+                el* added_elem = list->add(value);
+                assert(added_elem != nullptr);
             } else {
                 input >> str;
-                cerr <<"Nie liczba: " << str <<";" <<endl;
+                cerr <<"Nie liczba: " << str << endl;
             }
         }
 

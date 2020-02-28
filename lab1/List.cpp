@@ -5,14 +5,14 @@ el::el() {
 }
 
 el::el(int v)
-        : next(nullptr), previous(nullptr), v(v) {}
+        : next(nullptr), previous(nullptr), v(v) { }
 
-el::~el() {
-
-}
+el::~el() { }
 
 el *List::addHead(int a) {
     el* elem = new el(a);
+    assert(elem != nullptr);
+
     if (head == nullptr) {
         head = elem;
         tail = elem;
@@ -22,13 +22,15 @@ el *List::addHead(int a) {
         head = elem;
     }
 
-    assert(elem != nullptr);
     assert(elem == head);
+    assert(elem != nullptr && elem->v == a);
     return elem;
 }
 
 el *List::addTail(int a) {
     el* elem = new el(a);
+    assert(elem != nullptr);
+
     if (tail == nullptr) {
         head = elem;
         tail = elem;
@@ -38,12 +40,12 @@ el *List::addTail(int a) {
         tail = elem;
     }
 
-    assert(elem != nullptr);
     assert(elem == tail);
+    assert(elem != nullptr && elem->v == a);
     return elem;
 }
 
-el *List::removeHead() {
+void List::removeHead() {
     if (head == tail) {
         delete head;
         head = nullptr;
@@ -53,10 +55,9 @@ el *List::removeHead() {
         delete head;
         head = tmp;
     }
-    return nullptr;
 }
 
-el *List::removeTail() {
+void List::removeTail() {
     if (head == tail) {
         delete head;
         head = nullptr;
@@ -66,7 +67,6 @@ el *List::removeTail() {
         delete tail;
         tail = tmp;
     }
-    return nullptr;
 }
 
 List::List() {
@@ -80,6 +80,7 @@ List::~List() {
 
 el *List::add(int a) {
     el* elem = new el(a);
+    assert(elem != nullptr);
 
     if (head == nullptr) {
         head = elem;
@@ -106,12 +107,8 @@ el *List::add(int a) {
         current->next = elem;
     }
 
-    assert(elem != nullptr);
+    assert(elem != nullptr && elem->v == a);
     return elem;
-}
-
-el *List::removeValue(int a) {
-    return nullptr;
 }
 
 void List::removeList() {
@@ -142,7 +139,4 @@ void List::showLeftToRight() {
         ptr = ptr->next;
     }
     cout << endl;
-}
-
-void List::swap(el *&tmp, el *&k) {
 }
