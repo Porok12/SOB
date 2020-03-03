@@ -3,16 +3,18 @@
 
 #include <iostream>
 #include <cassert>
+#include <limits>
 
 using namespace std;
 
 struct el {
-    int v;
+//    double TMP[INT32_MAX];
+    float v;
     el *next;
     el *previous;
 
     el();
-    el(int v);
+    el(float v);
     virtual ~el();
 };
 
@@ -20,15 +22,15 @@ class List {
 private:
     el *head;
     el *tail;
-    el *addHead(int a);
-    el *addTail(int a);
+    el *addHead(float a);
+    el *addTail(float a);
     void removeHead();
     void removeTail();
 
 public:
     List();
     virtual~List();
-    el *add(int a);
+    el *add(float a);
     void removeList();
     void showRightToLeft();
     void showLeftToRight();

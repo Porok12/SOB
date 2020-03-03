@@ -30,4 +30,13 @@ int ignoreWhiteMarks(istream& in) {
     return howMany;
 }
 
+void saveToBinFile(string file_name, float from, float to, float step) {
+    ofstream stream;
+    stream.open(file_name, std::ios::out | std::ios::binary);
+    for (; from < to ; from += step) {
+        stream.write(reinterpret_cast<const char*>(&from), sizeof(float));
+    }
+    stream.close();
+}
+
 #endif //LAB1_UTILS_H

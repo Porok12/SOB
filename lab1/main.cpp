@@ -3,52 +3,67 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
+#include <zconf.h>
 #include "utils.h"
 #include "List.h"
 
 using namespace std;
 
 int main(int argc, char** argv) {
+
+//    saveToBinFile("./input.bin", 1, 10, 0.5);
+//    return EXIT_SUCCESS;
     
     if (argc == 4) {
         string file_name(argv[1]);
-        auto min = stringToValue<int>(string(argv[2]));
-        auto max =  stringToValue<int>(string(argv[3]));
+        auto min = stringToValue<float>(string(argv[2]));
+        auto max =  stringToValue<float>(string(argv[3]));
 
-        int value;
-        char what;
-        string str;
+        auto* list = new (nothrow) List();
+        assert(list != nullptr);
+        auto * value = new (nothrow) float;
+        assert(list != nullptr);
+        ifstream* fb;
 
-        filebuf* fb = new filebuf();
-        fb->open("../" + file_name, ios::in);
-        istream input(fb);
+//        file_name = "input.bin";
+        auto bios = ios::in;
 
-        assert(fb->is_open());
-        assert(input.good());
+        if (file_name.find(".txt") != std::string::npos) {
+            cout << "odczyt w trybie tekstowym" << endl;
 
-        auto* list = new List();
+        } else if (file_name.find(".bin") != std::string::npos) {
+            cout << "odczyt w trybie binarnym" << endl;
+            bios |= ios::binary;
 
-        while (!input.eof()) {
-            ignoreWhiteMarks(input);
-            what = input.peek();
-            if (isdigit(what)) {
-                input >> value;
-                assert(value >= min && value <= max);
-                el* added_elem = list->add(value);
-                assert(added_elem != nullptr);
-            } else {
-                input >> str;
-                cerr <<"Nie liczba: " << str << endl;
-            }
+        } else {
+            cerr << "nieobslugiwany format" << endl;
+            return EXIT_FAILURE;
         }
+
+        fb = new (nothrow) ifstream("../" + file_name, bios);
+        assert(fb != nullptr);
+        assert(fb->is_open());
+        while (!fb->eof()) {
+            if (bios & ios::binary) {
+                fb->read((char*)value, sizeof(float));
+            } else {
+                fb->operator>>(*value);
+            }
+            assert(*value >= min && *value <= max);
+            list->add(*value);
+        }
+
+//        while (1) {
+//            list->add(1.0f);
+//        }
 
         list->showLeftToRight();
         list->showRightToLeft();
         list->removeList();
 
         fb->close();
-        delete list, fb;
+        delete fb, list, value;
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }

@@ -4,12 +4,12 @@ el::el() {
     el(0);
 }
 
-el::el(int v)
+el::el(float v)
         : next(nullptr), previous(nullptr), v(v) { }
 
 el::~el() { }
 
-el *List::addHead(int a) {
+el *List::addHead(float a) {
     el* elem = new el(a);
     assert(elem != nullptr);
 
@@ -23,11 +23,12 @@ el *List::addHead(int a) {
     }
 
     assert(elem == head);
-    assert(elem != nullptr && elem->v == a);
+    assert(elem != nullptr
+           && elem->v == a);
     return elem;
 }
 
-el *List::addTail(int a) {
+el *List::addTail(float a) {
     el* elem = new el(a);
     assert(elem != nullptr);
 
@@ -41,7 +42,8 @@ el *List::addTail(int a) {
     }
 
     assert(elem == tail);
-    assert(elem != nullptr && elem->v == a);
+    assert(elem != nullptr
+           && elem->v == a);
     return elem;
 }
 
@@ -78,8 +80,8 @@ List::~List() {
     removeList();
 }
 
-el *List::add(int a) {
-    el* elem = new el(a);
+el *List::add(float a) {
+    el* elem = new (std::nothrow) el(a);
     assert(elem != nullptr);
 
     if (head == nullptr) {
