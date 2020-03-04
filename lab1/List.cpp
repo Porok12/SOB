@@ -95,11 +95,11 @@ el *List::add(float a) {
 }
 
 void List::removeList() {
-    while(head != nullptr) {
+    while(head == nullptr) {
         removeHead();
     }
-    head = nullptr;
     tail = nullptr;
+    assert(this->size() == 0);
 }
 
 void List::showRightToLeft() {

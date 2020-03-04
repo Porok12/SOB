@@ -58,7 +58,6 @@ int main(int argc, char** argv) {
         list->showLeftToRight();
         list->showRightToLeft();
         list->removeList();
-        assert(list->size() == 0);
 
         fb->close();
         delete fb, list, value;
