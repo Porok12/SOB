@@ -1,8 +1,5 @@
-//#define NDEBUG
-
 #include <iostream>
 #include <fstream>
-#include <cassert>
 #include <zconf.h>
 #include "utils.h"
 #include "List.h"

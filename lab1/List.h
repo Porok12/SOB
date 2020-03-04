@@ -1,6 +1,8 @@
 #ifndef LAB1_LIST_H
 #define LAB1_LIST_H
 
+//#define NDEBUG
+
 #include <iostream>
 #include <cassert>
 #include <limits>
