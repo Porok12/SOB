@@ -49,7 +49,8 @@ int main(int argc, char** argv) {
             } else {
                 fb->operator>>(*value);
             }
-            assert(*value >= min && *value <= max);
+            assert(*value <= max);
+            assert(*value >= min);
             list->add(*value);
         }
 
@@ -60,9 +61,13 @@ int main(int argc, char** argv) {
         list->showLeftToRight();
         list->showRightToLeft();
         list->removeList();
+        assert(list->size() == 0);
 
         fb->close();
         delete fb, list, value;
+    } else {
+        cerr << "Nieprawidlowa ilosc argumentow" << endl;
+        return EXIT_FAILURE;
     }
 
     return EXIT_SUCCESS;

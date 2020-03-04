@@ -22,18 +22,19 @@ class List {
 private:
     el *head;
     el *tail;
-    el *addHead(float a);
-    el *addTail(float a);
+    el *addHead(el* elem);
+    el *addTail(el* elem);
     void removeHead();
     void removeTail();
 
 public:
     List();
-    virtual~List();
+    virtual ~List();
     el *add(float a);
     void removeList();
     void showRightToLeft();
     void showLeftToRight();
+    int size();
 };
 
 #endif //LAB1_LIST_H

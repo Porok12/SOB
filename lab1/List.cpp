@@ -9,65 +9,45 @@ el::el(float v)
 
 el::~el() { }
 
-el *List::addHead(float a) {
-    el* elem = new el(a);
+el *List::addHead(el* elem) {
     assert(elem != nullptr);
-
-    if (head == nullptr) {
-        head = elem;
-        tail = elem;
-    } else {
-        elem->next = head;
-        head->previous = elem;
-        head = elem;
-    }
-
-    assert(elem == head);
-    assert(elem != nullptr
-           && elem->v == a);
+    elem->next = head;
+    head->previous = elem;
+    head = elem;
     return elem;
 }
 
-el *List::addTail(float a) {
-    el* elem = new el(a);
+el *List::addTail(el* elem) {
     assert(elem != nullptr);
-
-    if (tail == nullptr) {
-        head = elem;
-        tail = elem;
-    } else {
-        elem->previous = tail;
-        tail->next = elem;
-        tail = elem;
-    }
-
-    assert(elem == tail);
-    assert(elem != nullptr
-           && elem->v == a);
+    elem->previous = tail;
+    tail->next= elem;
+    tail = elem;
     return elem;
 }
 
 void List::removeHead() {
-    if (head == tail) {
+    if (head == tail) {  /*Czy jest to jedyny element*/
         delete head;
         head = nullptr;
         tail = nullptr;
-    } else {
+    } else { /*Przynajmniej dwa elementy*/
         el* tmp = head->next;
         delete head;
         head = tmp;
+        assert(head != nullptr);
     }
 }
 
 void List::removeTail() {
-    if (head == tail) {
+    if (head == tail) { /*Czy jest to ostatni element*/
         delete head;
         head = nullptr;
         tail = nullptr;
-    } else {
+    } else { /*Przynajmniej dwa elementy*/
         el* tmp = tail->previous;
         delete tail;
         tail = tmp;
+        assert(tail != nullptr);
     }
 }
 
@@ -88,13 +68,9 @@ el *List::add(float a) {
         head = elem;
         tail = elem;
     } else if (head->v > elem->v) {
-        elem->next = head;
-        head->previous = elem;
-        head = elem;
+        addHead(elem);
     } else if (tail->v < elem ->v) {
-        elem->previous = tail;
-        tail->next= elem;
-        tail = elem;
+        addTail(elem);
     } else {
         el* current = head;
         while (current->next != nullptr &&
@@ -109,17 +85,14 @@ el *List::add(float a) {
         current->next = elem;
     }
 
-    assert(elem != nullptr && elem->v == a);
+    assert(elem != nullptr);
+    assert(elem->v == a);
     return elem;
 }
 
 void List::removeList() {
-    el* ptr = head;
-    el* next = nullptr;
-    while(ptr != nullptr) {
-        next = ptr->next;
-        delete ptr;
-        ptr = next;
+    while(head != nullptr) {
+        removeHead();
     }
     head = nullptr;
     tail = nullptr;
@@ -141,4 +114,14 @@ void List::showLeftToRight() {
         ptr = ptr->next;
     }
     cout << endl;
+}
+
+int List::size() {
+    int i = 0;
+    el* ptr = this->head;
+    while (ptr != nullptr) {
+        ptr = ptr->next;
+        i++;
+    }
+    return i;
 }
