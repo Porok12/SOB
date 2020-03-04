@@ -25,7 +25,9 @@ el *List::addTail(el* elem) {
     return elem;
 }
 
+/*wywolujemy tylko gdy wiemy ze lista nie jest pusta*/
 void List::removeHead() {
+    assert(head != nullptr); /**/
     if (head == tail) {  /*Czy jest to jedyny element*/
         delete head;
         head = nullptr;
@@ -38,7 +40,9 @@ void List::removeHead() {
     }
 }
 
+/*wywolujemy tylko gdy wiemy ze lista nie jest pusta*/
 void List::removeTail() {
+    assert(tail != nullptr);
     if (head == tail) { /*Czy jest to ostatni element*/
         delete head;
         head = nullptr;
