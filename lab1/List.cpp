@@ -95,7 +95,7 @@ el *List::add(float a) {
 }
 
 void List::removeList() {
-    while(head == nullptr) {
+    while(head != nullptr) {
         removeHead();
     }
     tail = nullptr;
