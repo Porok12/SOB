@@ -42,6 +42,7 @@ public class Fibonacci {
                     .add(fib(k)))
                     .multiply(fib(k));
 
+//        System.err.println(3);
         return f[n];
     }
 }

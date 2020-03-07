@@ -12,6 +12,10 @@ public class Fibonacci {
             g = f - g;
         }
 
+//        try {
+//            Thread.sleep(1);
+//        } catch (InterruptedException ignored) { }
+//        System.err.println(1);
         return BigInteger.valueOf(f);
     }
 }

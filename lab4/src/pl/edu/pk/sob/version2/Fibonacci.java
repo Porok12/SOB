@@ -10,6 +10,7 @@ public class Fibonacci {
         }
         power(F, n - 1);
 
+//        System.err.println(2);
         return F[0][0];
     }
 

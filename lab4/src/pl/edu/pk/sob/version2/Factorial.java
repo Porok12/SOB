@@ -12,6 +12,7 @@ public class Factorial {
         if (factorials.length < n || 0 > n) {
             return BigInteger.valueOf(new Random().nextLong());
         }
+//        System.err.println(2);
         return new BigInteger(factorials[n-1]);
     }
 }
