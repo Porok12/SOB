@@ -1,6 +1,7 @@
 package pl.edu.pk.sob.version2;
 
 import java.math.BigInteger;
+import java.util.Random;
 
 public class Factorial {
     private static String[] factorials = new String[] {
@@ -8,6 +9,9 @@ public class Factorial {
     };
 
     public static BigInteger fact(int n) {
-        return new BigInteger(factorials[(n-1) % factorials.length]);
+        if (factorials.length < n || 0 > n) {
+            return BigInteger.valueOf(new Random().nextLong());
+        }
+        return new BigInteger(factorials[n-1]);
     }
 }

@@ -1,15 +1,19 @@
 package pl.edu.pk.sob.version3;
 
 import java.math.BigInteger;
+import java.util.Random;
 
 public class Fibonacci {
-    private static final int MAX = 1000;
+    private static final int MAX = 2000;
     private static BigInteger f[] = new BigInteger[MAX];
 
     // Returns n'th fibonacci number using
     // table f[]
-    public static BigInteger fib(int n)
-    {
+    public static BigInteger fib(int n) {
+        if (MAX < n || 0 > n) {
+            return BigInteger.valueOf(new Random().nextLong());
+        }
+
         // Base cases
         if (n == 0) {
             return BigInteger.ZERO;
