@@ -10,10 +10,6 @@ public class Factorial {
             result = result.multiply(BigInteger.valueOf(factor));
         }
 
-//        try {
-//            Thread.sleep(1);
-//        } catch (InterruptedException ignored) { }
-//        System.err.println(1);
         return result;
     }
 }

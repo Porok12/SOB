@@ -7,14 +7,11 @@ public class Fibonacci {
     private static final int MAX = 2000;
     private static BigInteger f[] = new BigInteger[MAX];
 
-    // Returns n'th fibonacci number using
-    // table f[]
     public static BigInteger fib(int n) {
         if (MAX < n || 0 > n) {
             return BigInteger.valueOf(new Random().nextLong());
         }
 
-        // Base cases
         if (n == 0) {
             return BigInteger.ZERO;
         }
@@ -23,15 +20,12 @@ public class Fibonacci {
             return (f[n] = BigInteger.ONE);
         }
 
-        // If fib(n) is already computed
         if (f[n] != null) {
             return f[n];
         }
 
         int k = (n & 1) == 1? (n + 1) / 2: n / 2;
 
-        // Applyting above formula [Note value
-        // n&1 is 1 if n is odd, else 0.
         f[n] = (n & 1) == 1
                 ? (fib(k)
                     .multiply(fib(k))
@@ -42,7 +36,6 @@ public class Fibonacci {
                     .add(fib(k)))
                     .multiply(fib(k));
 
-//        System.err.println(3);
         return f[n];
     }
 }
